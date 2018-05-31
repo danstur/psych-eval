@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Some Illness",
+    "description": "Weird behavior",
+    "symptoms": [
+      "Symptom A",
+      "Symptom B"
+    ]
+  },
+  {
+    "name": "Some Other Illness",
+    "description": "Slightly different weird behavior",
+    "symptoms": [
+      "Symptom B",
+      "Symptom C"
+    ]
+  }
+]

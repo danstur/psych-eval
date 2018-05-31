@@ -1,8 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { IllnessService } from '../illnesses/illness.service';
 
 @Component({
-  selector: 'evaluation',
   templateUrl: './evaluation.component.html',
 })
-export class EvaluationComponent {
+export class EvaluationComponent implements OnInit {
+  symptoms: string[];
+
+  constructor(private illnessService: IllnessService) {
+  }
+
+  async ngOnInit() {
+    this.symptoms = await this.illnessService.getSymptoms();
+  }
+
 }
+
