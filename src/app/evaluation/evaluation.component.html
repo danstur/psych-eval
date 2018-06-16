@@ -1,7 +1,11 @@
 <h1>Psych Illness Evaluation</h1>
-
-<ul>
-  <li *ngFor="let symptom of symptoms">
-    {{ symptom }}
-  </li>
-</ul>
+<form class="example-form">
+<mat-form-field class="example-full-width">
+  <input type="text" placeholder="Pick symptoms" matInput [formControl]="myControl" [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let symptom of filteredSymptoms | async" [value]="symptom">
+      {{ symptom }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+</form>
