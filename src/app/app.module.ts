@@ -8,6 +8,7 @@ import { MatInputModule, MatAutocompleteModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
+import { SymptomsPickerComponent } from './symptoms-picker/symptoms-picker.compoment';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 
@@ -15,7 +16,8 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
   declarations: [
     AppComponent,
     NavMenuComponent,
-    EvaluationComponent
+    EvaluationComponent,
+    SymptomsPickerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
