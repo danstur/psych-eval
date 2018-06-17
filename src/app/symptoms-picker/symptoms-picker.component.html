@@ -1,11 +1,6 @@
 <form>
   <mat-form-field class="example-full-width">
-    <input type="text"
-      placeholder="Pick symptoms.."
-      matInput
-      #symptomsInput
-      [formControl]="symptomsControl"
-      [matAutocomplete]="auto"
+    <input type="text" placeholder="Pick symptoms.." matInput #symptomsInput [formControl]="symptomsControl" [matAutocomplete]="auto"
     />
 
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
@@ -17,10 +12,16 @@
   </mat-form-field>
 
   <div>
-    Picked Symptoms: <br/>
+    Picked Symptoms:
+    <br/>
 
-    <div *ngFor="let symptom of selectedSymptoms">
-      {{symptom}}
+    <div *ngFor="let symptom of pickedSymptoms">
+      <div class="container">
+        <button mat-button (click)="onDeleteSymptom(symptom)">
+          <mat-icon svgIcon="delete"></mat-icon>
+        </button>
+        <div>{{symptom}}</div>
+      </div>
     </div>
   </div>
 </form>

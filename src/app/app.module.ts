@@ -4,7 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatAutocompleteModule } from '@angular/material';
+import { MatInputModule, MatAutocompleteModule, MatButtonModule } from '@angular/material';
+import { MatIconRegistry, MatIconModule } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
@@ -30,8 +32,15 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
+    matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg'));
+  }
+}
+
