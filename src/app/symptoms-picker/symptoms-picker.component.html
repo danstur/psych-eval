@@ -1,19 +1,20 @@
 <form>
   <mat-form-field class="example-full-width">
-    <input type="text" placeholder="Pick symptoms.." matInput #symptomsInput [formControl]="symptomsControl" [matAutocomplete]="auto"
-    />
+    <input type="text" placeholder="Pick symptoms.."
+      matInput
+      #symptomsInput
+      [formControl]="symptomsControl"
+      [matAutocomplete]="auto" />
 
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
       <mat-option *ngFor="let symptom of filteredSymptoms | async" [value]="symptom">
         {{ symptom }}
       </mat-option>
     </mat-autocomplete>
-
   </mat-form-field>
 
   <div>
-    Picked Symptoms:
-    <br/>
+    Symptoms: <br/>
 
     <div *ngFor="let symptom of pickedSymptoms">
       <div class="container" style="align-items: center;">

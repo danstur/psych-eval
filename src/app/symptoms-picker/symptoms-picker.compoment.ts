@@ -29,7 +29,6 @@ export class SymptomsPickerComponent {
   @Input()
   set availableSymptoms(symptoms: string[]) {
     this.availableSymptomsField = symptoms;
-    this.pickedSymptoms = this.availableSymptomsField;
     this.unpickedSymptoms = this.availableSymptomsField;
     this.filteredSymptoms = this.symptomsControl.valueChanges.pipe(
       startWith(''),
