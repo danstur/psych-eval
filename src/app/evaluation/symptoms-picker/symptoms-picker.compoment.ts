@@ -32,7 +32,8 @@ export class SymptomsPickerComponent {
     this.unpickedSymptoms = this.availableSymptomsField;
     this.filteredSymptoms = this.symptomsControl.valueChanges.pipe(
       startWith(''),
-      map(val => this.filter(val))
+      map(val => this.filter(val)),
+      map(visibileSymptoms => visibileSymptoms.sort())
     );
   }
 
