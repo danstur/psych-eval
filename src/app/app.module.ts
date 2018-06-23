@@ -10,16 +10,17 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
-import { SymptomsPickerComponent } from './symptoms-picker/symptoms-picker.compoment';
+import { SymptomsPickerComponent } from './evaluation/symptoms-picker/symptoms-picker.compoment';
+import { IllnessListComponent } from './evaluation/illness-list/illness-list.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     EvaluationComponent,
-    SymptomsPickerComponent
+    SymptomsPickerComponent,
+    IllnessListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { IllnessService } from '../illnesses/illness.service';
+import { IllnessService } from '../shared/services/illness/illness.service';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -18,4 +18,3 @@ export class EvaluationComponent implements OnInit {
     this.symptoms = await this.illnessService.getSymptoms();
   }
 }
-
