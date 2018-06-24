@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { IllnessService } from '../shared/services/illness/illness.service';
+import { IllnessService } from '../shared/services/illness.service';
 
 @Component({
   templateUrl: './evaluation.component.html',

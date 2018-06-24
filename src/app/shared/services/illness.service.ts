@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Illness } from './illness';
 import * as _ from 'lodash';
 
 const configUrl = 'assets/illnesses.json';
@@ -28,4 +27,12 @@ export class IllnessService {
   refresh(): Promise<any> {
     return this.illnesses = this.http.get<Illness[]>(configUrl).toPromise();
   }
+}
+
+export interface Illness {
+  name: string;
+
+  description: string;
+
+  symptoms: string[];
 }
