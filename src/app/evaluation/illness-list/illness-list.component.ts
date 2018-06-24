@@ -10,25 +10,32 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./illness-list.component.css']
 })
 export class IllnessListComponent implements OnInit {
-  private illnesses: Illness[];
+  illnesses: Illness[];
 
-  displayedColumns = ['id'];
+  displayedColumns = ['id', 'name', 'conformance'];
 
   dataSource: MatTableDataSource<IllnessDescriptor>;
 
+  private selectedSymptomsSet: Set<string>;
+
   @Input()
-  set selectedSymptoms(selectedSymptoms: string[]) {
-    const selectedSymptomsSet = new Set(selectedSymptoms);
+  set selectedSymptoms(selectedSymptoms: Set<string>) {
+    this.selectedSymptomsSet = selectedSymptoms;
+    this.updateDataSource();
+  }
+
+  private updateDataSource() {
     const illnessDescriptors = _(this.illnesses)
-      .map(il => [il, this.getDescriptor(il, selectedSymptomsSet)])
-      .orderBy(x => x.likeliHood, 'desc');
+      .map(il => this.getDescriptor(il, this.selectedSymptomsSet))
+      .orderBy(x => x.likelihood, 'desc')
+      .value();
     this.dataSource = new MatTableDataSource(illnessDescriptors);
   }
 
   private getDescriptor(illness: Illness, selectedSymptoms: Set<string>): IllnessDescriptor {
     // For now we simply compute how many of the symptoms of the illness
     // were selected and return the percentage between 0 and 1.
-    const matchingSymptoms = _(illness.symptoms).filter(symptom => selectedSymptoms.has(symptom)).length;
+    const matchingSymptoms = _(illness.symptoms).filter(symptom => selectedSymptoms.has(symptom)).size();
     return new IllnessDescriptor(illness, matchingSymptoms / illness.symptoms.length);
   }
 
@@ -36,11 +43,13 @@ export class IllnessListComponent implements OnInit {
 
   async ngOnInit() {
     this.illnesses = await this.illnessService.getIllnesses();
-    this.dataSource = new MatTableDataSource(new Array<IllnessDescriptor>());
+    this.updateDataSource();
   }
 
 }
 
 class IllnessDescriptor {
-  constructor(illness: Illness, likelihood: number){}
+  constructor(public illness: Illness, public likelihood: number) {
+
+  }
 }

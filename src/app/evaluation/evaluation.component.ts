@@ -7,7 +7,7 @@ import { IllnessService } from '../shared/services/illness.service';
 export class EvaluationComponent implements OnInit {
   symptoms: string[];
 
-  selectedSymptoms: string[] = [];
+  selectedSymptoms: Set<string> = new Set<string>();
 
   constructor(private illnessService: IllnessService) {
   }
@@ -16,7 +16,7 @@ export class EvaluationComponent implements OnInit {
     this.symptoms = await this.illnessService.getSymptoms();
   }
 
-  onSymptomsSelected(selectedSymptoms: string[]) {
+  onSymptomsSelected(selectedSymptoms: Set<string>) {
     this.selectedSymptoms = selectedSymptoms;
   }
 }

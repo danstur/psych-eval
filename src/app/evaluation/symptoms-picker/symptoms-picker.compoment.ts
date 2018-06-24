@@ -15,9 +15,9 @@ export class SymptomsPickerComponent {
   public filteredSymptoms: Observable<string[]>;
 
   // All symptoms that have been selected.
-  selectedSymptoms: string[] = [];
+  selectedSymptoms: Set<string> = new Set<string>();
 
-  @Output() symptomsSelected = new EventEmitter<string[]>();
+  @Output() symptomsSelected = new EventEmitter<Set<string>>();
 
   // All symptoms that haven't been picked so far.
   private unselectedSymptoms: string[];
@@ -52,17 +52,23 @@ export class SymptomsPickerComponent {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     const pickedSymptom = event.option.value;
-    this.selectedSymptoms.push(pickedSymptom);
-    this.symptomsSelected.emit(this.selectedSymptoms);
+    this.selectedSymptoms.add(pickedSymptom);
+    this.fireSymptomsChangedEvent();
     this.unselectedSymptoms = this.unselectedSymptoms.filter(symptom => symptom !== pickedSymptom);
     this.resetSymptomsControl();
   }
 
   onDeleteSymptom(symptom: string) {
-    this.selectedSymptoms = this.selectedSymptoms.filter(x => x !== symptom);
-    this.symptomsSelected.emit(this.selectedSymptoms);
+    this.selectedSymptoms.delete(symptom);
+    this.fireSymptomsChangedEvent();
     this.unselectedSymptoms.push(symptom);
     this.resetSymptomsControl();
+  }
+
+  private fireSymptomsChangedEvent() {
+    // change detection doesn't work if we simply return the same object but with changed
+    // content. So always create a copy.
+    this.symptomsSelected.emit(new Set(this.selectedSymptoms));
   }
 
   private resetSymptomsControl() {
