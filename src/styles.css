@@ -5,6 +5,10 @@
   display: flex;
 }
 
+.full-size {
+  width: 100%;
+}
+
 /* Guidance from https://materialdesignicons.com/getting-started */
 button.mat-menu-item {
   line-height: 24px !important;
@@ -16,3 +20,4 @@ a.mat-menu-item > mat-icon {
   height: 24px;
   width: 24px;
 }
+
