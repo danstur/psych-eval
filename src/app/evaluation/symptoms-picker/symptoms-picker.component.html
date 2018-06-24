@@ -16,7 +16,7 @@
   <div>
     Symptoms: <br/>
 
-    <div *ngFor="let symptom of pickedSymptoms">
+    <div *ngFor="let symptom of selectedSymptoms">
       <div class="flex-container" style="align-items: center;">
         <button mat-button (click)="onDeleteSymptom(symptom)" >
           <mat-icon svgIcon="delete"></mat-icon>

@@ -15,13 +15,21 @@ export class IllnessService {
     this.refresh();
   }
 
-  getIllnesses(): Promise<Illness[]> {
-    return this.illnesses;
+  async getIllnesses(): Promise<Illness[]> {
+    try {
+      return await this.illnesses;
+    } catch (exception) {
+      alert(`Could not load data. Exception: ${exception}`);
+    }
   }
 
   async getSymptoms(): Promise<string[]> {
-    const illnesses = await this.illnesses;
-    return _(illnesses).flatMap(il => il.symptoms).uniq().value();
+    try {
+      const illnesses = await this.illnesses;
+      return _(illnesses).flatMap(il => il.symptoms).uniq().value();
+    } catch (exception) {
+      alert(`Could not load data. Exception: ${exception}`);
+    }
   }
 
   refresh(): Promise<any> {
@@ -30,6 +38,8 @@ export class IllnessService {
 }
 
 export interface Illness {
+  id: string;
+
   name: string;
 
   description: string;

@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, Output, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
@@ -15,10 +15,12 @@ export class SymptomsPickerComponent {
   public filteredSymptoms: Observable<string[]>;
 
   // All symptoms that have been selected.
-  public pickedSymptoms: string[] = [];
+  selectedSymptoms: string[] = [];
+
+  @Output() symptomsSelected = new EventEmitter<string[]>();
 
   // All symptoms that haven't been picked so far.
-  private unpickedSymptoms: string[];
+  private unselectedSymptoms: string[];
 
   @ViewChild('symptomsInput') private symptomsInput: ElementRef;
   private symptomsControl: FormControl = new FormControl();
@@ -28,8 +30,11 @@ export class SymptomsPickerComponent {
 
   @Input()
   set availableSymptoms(symptoms: string[]) {
+    if (symptoms === undefined) {
+      return;
+    }
     this.availableSymptomsField = symptoms;
-    this.unpickedSymptoms = this.availableSymptomsField;
+    this.unselectedSymptoms = this.availableSymptomsField;
     this.filteredSymptoms = this.symptomsControl.valueChanges.pipe(
       startWith(''),
       map(val => this.filter(val)),
@@ -39,22 +44,24 @@ export class SymptomsPickerComponent {
 
   filter(filterString: string): string[] {
     if (!filterString) {
-      return this.unpickedSymptoms;
+      return this.unselectedSymptoms;
     }
     const normalizedFilter = filterString.toLowerCase();
-    return this.unpickedSymptoms.filter(symptom => symptom.toLowerCase().includes(normalizedFilter));
+    return this.unselectedSymptoms.filter(symptom => symptom.toLowerCase().includes(normalizedFilter));
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
     const pickedSymptom = event.option.value;
-    this.pickedSymptoms.push(pickedSymptom);
-    this.unpickedSymptoms = this.unpickedSymptoms.filter(symptom => symptom !== pickedSymptom);
+    this.selectedSymptoms.push(pickedSymptom);
+    this.symptomsSelected.emit(this.selectedSymptoms);
+    this.unselectedSymptoms = this.unselectedSymptoms.filter(symptom => symptom !== pickedSymptom);
     this.resetSymptomsControl();
   }
 
   onDeleteSymptom(symptom: string) {
-    this.pickedSymptoms = this.pickedSymptoms.filter(x => x !== symptom);
-    this.unpickedSymptoms.push(symptom);
+    this.selectedSymptoms = this.selectedSymptoms.filter(x => x !== symptom);
+    this.symptomsSelected.emit(this.selectedSymptoms);
+    this.unselectedSymptoms.push(symptom);
     this.resetSymptomsControl();
   }
 

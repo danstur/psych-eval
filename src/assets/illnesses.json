@@ -1,6 +1,7 @@
 [
   {
     "name": "Some Illness",
+    "id": "MD 1",
     "description": "Weird behavior",
     "symptoms": [
       "Symptom A",
@@ -9,6 +10,7 @@
   },
   {
     "name": "Some Other Illness",
+    "id": "MD 2",
     "description": "Slightly different weird behavior",
     "symptoms": [
       "Symptom B",

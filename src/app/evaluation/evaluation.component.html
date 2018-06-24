@@ -1,10 +1,14 @@
 <h1>Psych Illness Evaluation</h1>
 
-<div class="flex-container">
-  <app-symptoms-picker [availableSymptoms]="symptoms">
-  </app-symptoms-picker>
-  <div style="width: 100%">
-    <app-illness-list>
-    </app-illness-list>
+<div class="container-fluid">
+  <div class='row'>
+    <div class='col-sm-3'>
+      <app-symptoms-picker [availableSymptoms]="symptoms" (symptomsSelected)="onSymptomsSelected($event)" >
+      </app-symptoms-picker>
+    </div>
+    <div class='col-sm-9 body-content'>
+      <app-illness-list [selectedSymptoms]="selectedSymptoms">
+      </app-illness-list>
+    </div>
   </div>
 </div>

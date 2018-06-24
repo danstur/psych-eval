@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatAutocompleteModule, MatButtonModule } from '@angular/material';
+import { MatInputModule, MatAutocompleteModule, MatButtonModule, MatTableModule } from '@angular/material';
 import { MatIconRegistry, MatIconModule } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -35,6 +35,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
     MatAutocompleteModule,
     MatIconModule,
     MatButtonModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
