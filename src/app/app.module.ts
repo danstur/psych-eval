@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatAutocompleteModule, MatButtonModule, MatTableModule } from '@angular/material';
-import { MatIconRegistry, MatIconModule } from '@angular/material';
+import { MatIconRegistry, MatIconModule, MatPaginatorModule } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -36,6 +36,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
     MatIconModule,
     MatButtonModule,
     MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,8 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IllnessService, Illness } from '../../shared/services/illness.service';
-import { Observable } from 'rxjs';
 import * as _ from 'lodash';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-illness-list',
@@ -13,6 +12,7 @@ export class IllnessListComponent implements OnInit {
   illnesses: Illness[];
 
   displayedColumns = ['id', 'name', 'conformance'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   dataSource: MatTableDataSource<IllnessDescriptor>;
 
@@ -30,6 +30,7 @@ export class IllnessListComponent implements OnInit {
       .orderBy(x => x.likelihood, 'desc')
       .value();
     this.dataSource = new MatTableDataSource(illnessDescriptors);
+    this.dataSource.paginator = this.paginator;
   }
 
   private getDescriptor(illness: Illness, selectedSymptoms: Set<string>): IllnessDescriptor {
