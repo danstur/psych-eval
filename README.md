@@ -8,5 +8,11 @@ Self-hosted angular application using .NET Core 2.1.
 
 Start both the .NET server and the angular app independent of each other. 
 
-## Setup    
+## Setup
+
 Execute New-Distribution.ps1
+
+## TODO
+
+- Figure out how to specify port via appsettings.
+- return correct data in controller.
