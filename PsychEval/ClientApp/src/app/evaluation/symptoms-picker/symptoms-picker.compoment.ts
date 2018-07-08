@@ -23,7 +23,7 @@ export class SymptomsPickerComponent {
   private unselectedSymptoms: string[];
 
   @ViewChild('symptomsInput') private symptomsInput: ElementRef;
-  private symptomsControl: FormControl = new FormControl();
+  symptomsControl: FormControl = new FormControl();
 
   // all availabe symptoms. Input from parent component.
   private availableSymptomsField: string[];
