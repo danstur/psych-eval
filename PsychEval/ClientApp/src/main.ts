@@ -10,7 +10,7 @@ export function getBaseUrl() {
     baseUrl = document.getElementsByTagName('base')[0].href;
   } else {
     const hostname = window.location.hostname;
-    const port = window.location.port;
+    const port = Number(window.location.port) - 1;
     const protocol = window.location.protocol;
     baseUrl = `${protocol}//${hostname}:${port}/`;
   }

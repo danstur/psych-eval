@@ -1,10 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 import { ConfiguredHttpClient } from './configuredHttpClient';
-
-const configUrl = 'assets/illnesses.json';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +22,7 @@ export class IllnessService {
   }
 
   refresh(): Promise<any> {
-    return this.illnesses = this.http.get<Illness[]>(configUrl).toPromise();
+    return this.illnesses = this.http.get<Illness[]>('illness').toPromise();
   }
 }
 

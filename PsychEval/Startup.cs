@@ -23,7 +23,7 @@ namespace PsychEval
             {
                 c.SwaggerDoc("v1", new Info { Title = "Psych-Evaluation", Version = "v1.0" });
             });
-
+            services.AddCors();
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
@@ -35,16 +35,26 @@ namespace PsychEval
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors(builder =>
+                    builder
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                );
             }
             else
             {
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
-            app.UseSwagger();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Psych-Evaluation API v1.0");
+            });
 
             app.UseSpa(spa =>
             {
