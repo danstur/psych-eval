@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IllnessService, Illness } from '../../shared/services/illness.service';
 import * as _ from 'lodash';
 import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
-import { IllnessDetailComponent } from '../../illness-detail/illness-detail.component';
+import { IllnessDetailComponent } from '../illness-detail/illness-detail.component';
 
 @Component({
   selector: 'app-illness-list',

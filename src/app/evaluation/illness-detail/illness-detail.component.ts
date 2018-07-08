@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { Illness } from '../shared/services/illness.service';
+import { Illness } from '../../shared/services/illness.service';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({

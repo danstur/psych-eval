@@ -13,7 +13,7 @@ import { EvaluationComponent } from './evaluation/evaluation.component';
 import { SymptomsPickerComponent } from './evaluation/symptoms-picker/symptoms-picker.compoment';
 import { IllnessListComponent } from './evaluation/illness-list/illness-list.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { IllnessDetailComponent } from './illness-detail/illness-detail.component';
+import { IllnessDetailComponent } from './evaluation/illness-detail/illness-detail.component';
 
 @NgModule({
   declarations: [
