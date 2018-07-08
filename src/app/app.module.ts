@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatAutocompleteModule, MatButtonModule, MatTableModule } from '@angular/material';
+import { MatInputModule, MatAutocompleteModule, MatButtonModule, MatTableModule, MatDialogModule } from '@angular/material';
 import { MatIconRegistry, MatIconModule, MatPaginatorModule } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -13,6 +13,7 @@ import { EvaluationComponent } from './evaluation/evaluation.component';
 import { SymptomsPickerComponent } from './evaluation/symptoms-picker/symptoms-picker.compoment';
 import { IllnessListComponent } from './evaluation/illness-list/illness-list.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { IllnessDetailComponent } from './illness-detail/illness-detail.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,11 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
     NavMenuComponent,
     EvaluationComponent,
     SymptomsPickerComponent,
-    IllnessListComponent
+    IllnessListComponent,
+    IllnessDetailComponent
+  ],
+  entryComponents: [
+    IllnessDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,6 +42,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>{{illness.id}}: {{illness.name}}</h2>
+<mat-dialog-content>
+  <h4>Description</h4>
+  {{illness.description}}
+  <h4>Symptoms</h4>
+  <table>
+    <ul>
+      <li *ngFor="let symptom of illness.symptoms">
+        {{symptom}}
+      </li>
+    </ul>
+  </table>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

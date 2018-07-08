@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IllnessService, Illness } from '../../shared/services/illness.service';
 import * as _ from 'lodash';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
+import { IllnessDetailComponent } from '../../illness-detail/illness-detail.component';
 
 @Component({
   selector: 'app-illness-list',
@@ -11,7 +12,7 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 export class IllnessListComponent implements OnInit {
   illnesses: Illness[];
 
-  displayedColumns = ['id', 'name', 'conformance'];
+  displayedColumns = ['id', 'name', 'conformance', 'moreDetails'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   dataSource: MatTableDataSource<IllnessDescriptor>;
@@ -40,17 +41,27 @@ export class IllnessListComponent implements OnInit {
     return new IllnessDescriptor(illness, matchingSymptoms / illness.symptoms.length);
   }
 
-  constructor(private illnessService: IllnessService) { }
+  constructor(private illnessService: IllnessService, public dialog: MatDialog) { }
 
   async ngOnInit() {
     this.illnesses = await this.illnessService.getIllnesses();
     this.updateDataSource();
   }
 
+  openDialog(element: Illness) {
+    const dialogRef = this.dialog.open(IllnessDetailComponent, {
+      width: '80%',
+      data: { illness: element }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
 }
 
 class IllnessDescriptor {
   constructor(public illness: Illness, public likelihood: number) {
-
   }
 }
