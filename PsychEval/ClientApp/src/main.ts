@@ -5,7 +5,16 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 export function getBaseUrl() {
-  return document.getElementsByTagName('base')[0].href;
+  let baseUrl: string;
+  if (environment.production) {
+    baseUrl = document.getElementsByTagName('base')[0].href;
+  } else {
+    const hostname = window.location.hostname;
+    const port = window.location.port;
+    const protocol = window.location.protocol;
+    baseUrl = `${protocol}//${hostname}:${port}/`;
+  }
+  return `${baseUrl}api`;
 }
 
 const providers = [

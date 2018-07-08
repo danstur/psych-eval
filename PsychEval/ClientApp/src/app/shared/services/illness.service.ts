@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
@@ -11,7 +11,7 @@ const configUrl = 'assets/illnesses.json';
 export class IllnessService {
   private illnesses: Promise<Illness[]>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl) {
     this.refresh();
   }
 
