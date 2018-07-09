@@ -1,7 +1,9 @@
 <h2 mat-dialog-title>{{illness.id}}: {{illness.name}}</h2>
 <mat-dialog-content>
   <h4>Description</h4>
-  {{illness.description}}
+  <div class="preserve-newlines">
+    {{illness.description}}
+  </div>
   <h4>Symptoms</h4>
   <table>
     <ul>

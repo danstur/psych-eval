@@ -1,0 +1,4 @@
+/* For some reason the identical definition in app.component.css isn't picked up for the dialog. */
+.preserve-newlines {
+  white-space: pre-line;
+}
