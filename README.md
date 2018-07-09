@@ -14,4 +14,4 @@ Execute New-Distribution.ps1
 
 ## TODO
 
-- return correct data in controller.
+- configure CSV parser via appsettings.json 
