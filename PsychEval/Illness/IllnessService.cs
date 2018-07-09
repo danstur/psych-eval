@@ -17,7 +17,7 @@ namespace PsychEval.Illness
         public ICollection<IllnessEntity> GetIllnesses()
         {
             var illnesses = new List<IllnessEntity>();
-            using (var csv = new CachedCsvReader(_parserConfiguration.GetCsvStream(), hasHeaders: true))
+            using (var csv = _parserConfiguration.GetCsvReader())
             {
                 csv.SkipEmptyLines = true;
                 while (csv.ReadNextRecord())
@@ -36,7 +36,6 @@ namespace PsychEval.Illness
                     {
                         continue;
                     }
-
                     try
                     {
                         illnesses.Add(new IllnessEntity(id, name, description, symptoms));

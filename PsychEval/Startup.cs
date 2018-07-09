@@ -1,3 +1,5 @@
+using System.Reflection;
+using System.Text;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -16,14 +18,17 @@ namespace PsychEval
             Configuration = configuration;
         }
 
+        private string GetVersion(int fields) => $"v{Assembly.GetExecutingAssembly().GetName().Version.ToString(fields)}";
+
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            Encoding.RegisterProvider(new Utf8NoBomEncodingProvider());
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "Psych-Evaluation", Version = "v1.0" });
+                c.SwaggerDoc(GetVersion(1), new Info { Title = "Psych-Evaluation", Version = GetVersion(3) });
             });
             services.AddCors();
             services.AddSpaStaticFiles(configuration =>
@@ -64,7 +69,7 @@ namespace PsychEval
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Psych-Evaluation API v1.0");
+                c.SwaggerEndpoint($"/swagger/{GetVersion(1)}/swagger.json", $"Psych-Evaluation API {GetVersion(3)}");
             });
 
             app.UseSpa(spa =>
