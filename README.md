@@ -14,5 +14,4 @@ Execute New-Distribution.ps1
 
 ## TODO
 
-- Figure out how to specify port via appsettings.
 - return correct data in controller.

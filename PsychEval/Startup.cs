@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PsychEval.Illness;
+using Scrutor;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace PsychEval
@@ -28,6 +30,15 @@ namespace PsychEval
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.AddSingleton(IllnessParserConfiguration.Create(@"C:\tmp\data.csv"));
+            services.Scan(x =>
+                x.FromEntryAssembly()
+                    .AddClasses()
+                    .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+                    .AsImplementedInterfaces()
+                    .AsSelf()
+                    .WithTransientLifetime()
+            );
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
