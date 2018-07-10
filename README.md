@@ -11,7 +11,3 @@ Start both the .NET server and the angular app independent of each other.
 ## Setup
 
 Execute New-Distribution.ps1
-
-## TODO
-
-- configure CSV parser via appsettings.json 
