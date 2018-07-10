@@ -2,7 +2,7 @@
 {
     public sealed class CsvParserOptions
     {
-        public string FilePath { get; set; }
+        public string FilePath { get; set; } = "data.csv";
 
         public char Delimiter { get; set; } = ',';
 
