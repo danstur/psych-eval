@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using LumenWorks.Framework.IO.Csv;
 
 namespace PsychEval.Illness
 {
     public sealed class IllnessService
     {
-        private readonly IllnessParserConfiguration _parserConfiguration;
+        private readonly IllnessParserFactory _parserFactory;
 
-        public IllnessService(IllnessParserConfiguration parserConfiguration)
+        public IllnessService(IllnessParserFactory parserFactory)
         {
-            _parserConfiguration = parserConfiguration ?? throw new ArgumentNullException(nameof(parserConfiguration));
+            _parserFactory = parserFactory ?? throw new ArgumentNullException(nameof(parserFactory));
         }
 
         public ICollection<IllnessEntity> GetIllnesses()
         {
             var illnesses = new List<IllnessEntity>();
-            using (var csv = _parserConfiguration.GetCsvReader())
+            using (var csv = _parserFactory.GetCsvReader())
             {
                 csv.SkipEmptyLines = true;
                 while (csv.ReadNextRecord())

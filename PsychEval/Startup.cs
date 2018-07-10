@@ -35,7 +35,7 @@ namespace PsychEval
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-            services.AddSingleton(IllnessParserConfiguration.Create(@"C:\tmp\data.csv"));
+            services.Configure<CsvParserOptions>(Configuration.GetSection("CsvConfiguration"));
             services.Scan(x =>
                 x.FromEntryAssembly()
                     .AddClasses()
